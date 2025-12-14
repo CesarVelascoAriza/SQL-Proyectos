@@ -1,0 +1,51 @@
+erDiagram
+   
+    PERSONAS {
+        int id PK
+        string nombre
+        string apellido
+        string numero_documento
+        string correo
+        int perfil_id FK NOT NULL
+    }
+
+    USUARIOS {
+        int id PK
+        string username
+        string password_hash
+        bool activo
+    }
+
+    PERFILES {
+        int id PK
+        string nombre
+    }
+
+    MENUS {
+        int id PK
+        string modulo 
+        string nombre 
+        int parent_id FK
+    }
+
+    PANTALLAS {
+        int id PK
+        int menu_id FK
+        string nombre 
+        string ruta   
+    }
+
+
+    PERSONAS ||--|| USUARIOS : "1:1 (una persona tiene un usuario)"
+    PERFILES ||--o{ PERSONAS : "1:N (un perfil asigna a muchas personas)"
+    MENUS ||--o{ PANTALLAS : "1:N (un módulo/menu tiene muchas pantallas)"
+    PERFILES_MENUS {
+        int perfil_id FK
+        int menu_id FK
+        bool puede_ver
+        bool puede_editar
+    }
+
+  
+    PERFILES ||--o{ PERFILES_MENUS : "1:N (perfil -> permisos por menú)"
+    MENUS ||--o{ PERFILES_MENUS : "1:N (menú -> asignado a perfiles)"

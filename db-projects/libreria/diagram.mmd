@@ -1,0 +1,27 @@
+erDiagram
+    ROLES {
+        int id_rol PK
+        string rol
+    }
+    TIPO_DOCUMENTOS {
+        int id_tipo PK
+        string nom_tipo_corto
+        string nom_tipo_largo
+    }
+    USUARIOS {
+        int id_usuario PK
+        int tipo_doc FK
+        int documento
+        string nombre
+        string apellido
+        datetime fecha_nacimiento
+        string correo_electronico
+    }
+    ROLES_USUARIOS {
+        int rol FK
+        int usuario FK
+    }
+
+    ROLES ||--o{ ROLES_USUARIOS : asigna
+    USUARIOS ||--o{ ROLES_USUARIOS : tiene
+    TIPO_DOCUMENTOS ||--o{ USUARIOS : referencia

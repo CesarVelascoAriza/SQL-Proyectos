@@ -1,0 +1,30 @@
+erDiagram
+    REGION {
+        int id PK
+        string nombre
+    }
+    ELECTION {
+        int id PK
+        string nombre
+        date fecha
+    }
+    POSITION {
+        int id PK
+        string nombre
+    }
+    CANDIDATE {
+        int id PK
+        string nombre
+        int region_id FK
+    }
+    VOTES {
+        int id PK
+        int election_id FK
+        int candidate_id FK
+        int votos
+    }
+
+    REGION ||--o{ CANDIDATE : contiene
+    ELECTION ||--o{ VOTES : tiene
+    CANDIDATE ||--o{ VOTES : recibe
+    POSITION ||--o{ CANDIDATE : opcionalmente
