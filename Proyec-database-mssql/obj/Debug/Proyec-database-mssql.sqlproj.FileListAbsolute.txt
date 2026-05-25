@@ -1,5 +1,0 @@
-/workspaces/SQL-Proyectos/Proyec-database-mssql/bin/Debug/Proyec-database-mssql.dacpac
-/workspaces/SQL-Proyectos/Proyec-database-mssql/obj/Debug/Model.xml
-/workspaces/SQL-Proyectos/Proyec-database-mssql/obj/Debug/refactor.xml
-/workspaces/SQL-Proyectos/Proyec-database-mssql/obj/Debug/postdeploy.sql
-/workspaces/SQL-Proyectos/Proyec-database-mssql/obj/Debug/predeploy.sql
