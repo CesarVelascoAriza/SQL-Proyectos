@@ -1,0 +1,35 @@
+name: Verificar compilación SQL
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restaurar dependencias
+        run: nuget restore SQL-Proyectos.sln
+
+      - name: Compilar proyecto SQL
+        run: msbuild SQL-Proyectos.sln /p:Configuration=Release
+
+      - name: Verificar resultado
+        run: |
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "❌ Error: la compilación falló."
+            exit 1
+          } else {
+            Write-Host "✅ Compilación exitosa."
+          }
