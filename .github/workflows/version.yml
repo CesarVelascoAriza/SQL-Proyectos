@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Leer versión actual
-        run: grep 'Version=' PostulationEmployes.sqlproj
+        run: grep 'Version=' Library/PostulationEmployes.sqlproj
 
       - name: Incrementar versión menor automáticamente
         run: |
