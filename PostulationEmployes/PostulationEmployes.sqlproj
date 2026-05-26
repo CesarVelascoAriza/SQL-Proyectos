@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build">
+  <Sdk Name="Microsoft.Build.Sql" Version="2.1.0" />
+  <PropertyGroup>
+    <Name>PostulationEmployes</Name>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql170DatabaseSchemaProvider</DSP>
+    <ModelCollation>1033, CI</ModelCollation>
+    <ProjectGuid>5161522a-1d86-460a-9bf7-20fae0339643</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Build Remove="DML\inserciones.sql" />
+    <Build Remove="PostDeploymentScript.sql" />
+    <Build Remove="PreDeploymentScript.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeploymentScript.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDeploymentScript.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DML\CONSULTAS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DML\inserciones.sql" />
+  </ItemGroup>
+</Project>

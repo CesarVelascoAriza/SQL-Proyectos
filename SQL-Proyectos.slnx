@@ -1,6 +1,13 @@
 <Solution>
   <Configurations>
+    <BuildType Name="Debug" />
     <BuildType Name="Default" />
-    <Platform Name="Default" />
+    <BuildType Name="Release" />
   </Configurations>
+  <Project Path="Library/Library.sqlproj" Type="42ea0dbd-9cf1-443e-919e-be9c484e4577" Id="1224c518-a336-4e34-8a54-0845504807bd">
+    <BuildType Solution="Default|*" Project="Release" />
+  </Project>
+  <Project Path="PostulationEmployes/PostulationEmployes.sqlproj" Type="42ea0dbd-9cf1-443e-919e-be9c484e4577" Id="5161522a-1d86-460a-9bf7-20fae0339643">
+    <BuildType Solution="Default|*" Project="Release" />
+  </Project>
 </Solution>
