@@ -20,10 +20,10 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Restaurar dependencias
-        run: nuget restore SQL-Proyectos.sln
+        run: nuget restore SQL-Proyectos.slnx
 
       - name: Compilar proyecto SQL
-        run: msbuild SQL-Proyectos.sln /p:Configuration=Release
+        run: msbuild SQL-Proyectos.slnx /p:Configuration=Release
 
       - name: Verificar resultado
         run: |
