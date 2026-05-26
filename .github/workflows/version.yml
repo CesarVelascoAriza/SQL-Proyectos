@@ -13,31 +13,19 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
-      - name: Leer versión actual
-        run: grep 'Version=' Library/PostulationEmployes.sqlproj
-
-      - name: Incrementar versión menor automáticamente
+      - name: Incrementar versión en README.md
         run: |
-          VERSION=$(grep 'Version=' PostulationEmployes.sqlproj | sed 's/.*Version="//;s/".*//')
-          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-          NEW_VERSION="$MAJOR.$((MINOR+1)).0"
+            VERSION=$(grep -m1 'Versión' README.md | awk '{print $3}')
+            IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+            NEW_VERSION="$MAJOR.$((MINOR+1)).0"
+            sed -i "s/| Versión    | .*/| Versión    | $NEW_VERSION                            |/" README.md
+            echo "Nueva versión: $NEW_VERSION"
 
-          # Actualizar .sqlproj
-          sed -i "s/Version=\"$VERSION\"/Version=\"$NEW_VERSION\"/" PostulationEmployes.sqlproj
-
-          # Actualizar README.md (línea de Versión en la tabla)
-          sed -i "s/| Versión    | .*/| Versión    | $NEW_VERSION                            |/" README.md
-
-          # Actualizar LICENSE (encabezado con versión)
-          sed -i "1s/.*/GPL v3 - Versión $NEW_VERSION/" LICENSE
-
-          echo "Nueva versión: $NEW_VERSION"
-
-      - name: Commit y tag
+      - name: Commit y push
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add PostulationEmployes.sqlproj README.md LICENSE
-          git commit -m "Actualización automática a versión $NEW_VERSION"
-          git tag "v$NEW_VERSION"
-          git push origin main --tags
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add README.md
+            git commit -m "Actualización automática de versión en README a $NEW_VERSION"
+            git push origin main
+
