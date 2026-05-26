@@ -15,17 +15,11 @@ jobs:
 
       - name: Incrementar versión en README.md
         run: |
-            VERSION=$(grep -m1 'Versión' README.md | awk '{print $3}')
+            VERSION=$(grep -m1 'Versión' README.md | sed -E 's/.*\|[[:space:]]*([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
             IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-            NEW_VERSION="$MAJOR.$((MINOR+1)).0"
+            NEW_VERSION="$MAJOR.$MINOR.$((PATCH+1))"
             sed -i "s/| Versión    | .*/| Versión    | $NEW_VERSION                            |/" README.md
             echo "Nueva versión: $NEW_VERSION"
 
-      - name: Commit y push
-        run: |
-            git config user.name "github-actions"
-            git config user.email "actions@github.com"
-            git add README.md
-            git commit -m "Actualización automática de versión en README a $NEW_VERSION"
-            git push origin main
+
 
